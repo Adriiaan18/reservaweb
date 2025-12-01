@@ -1,31 +1,28 @@
 <?php
-include 'admin_check.php';
 require '../includes/db.php';
 
-$id = $_POST['id'];
-$nombre = $_POST['nombre'];
-$descripcion = $_POST['descripcion'];
-$categoria = $_POST['categoria'];
-$precio = $_POST['precio'];
+$pedidos = $pdo->query("SELECT * FROM pedidos ORDER BY fecha DESC")->fetchAll();
+?>
 
-// Imagen nueva
-$archivo = null;
+<h2>Pedidos recibidos</h2>
 
-if (!empty($_FILES['imagen']['name'])) {
-    $archivo = time() . "_" . $_FILES['imagen']['name'];
-    move_uploaded_file($_FILES['imagen']['tmp_name'], "../uploads/" . $archivo);
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Usuario</th>
+        <th>Total</th>
+        <th>Estado</th>
+        <th>Fecha</th>
+    </tr>
 
-    $stmt = $pdo->prepare("UPDATE productos SET imagen=? WHERE id=?");
-    $stmt->execute([$archivo, $id]);
-}
+    <?php foreach ($pedidos as $p): ?>
+    <tr>
+        <td><?= $p['id'] ?></td>
+        <td><?= $p['usuario_id'] ?></td>
+        <td><?= $p['total'] ?> €</td>
+        <td><?= $p['estado'] ?></td>
+        <td><?= $p['fecha'] ?></td>
+    </tr>
+    <?php endforeach; ?>
+</table>
 
-$stmt = $pdo->prepare("
-    UPDATE productos
-    SET nombre=?, descripcion=?, categoria=?, precio=?
-    WHERE id=?
-");
-
-$stmt->execute([$nombre, $descripcion, $categoria, $precio, $id]);
-
-header("Location: productos.php?edit=1");
-exit;

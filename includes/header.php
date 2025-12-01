@@ -1,54 +1,32 @@
-<?php
-/*
- |--------------------------------------------------------------------------
- | HEADER
- |--------------------------------------------------------------------------
- | Aquí va el menú, los enlaces a CSS y la apertura del HTML.
- */
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start(); // Aseguramos siempre sesión iniciada
-}
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Restaurante</title>
+    <title>MiNegocio.com</title>
 
-    <!-- Vinculamos el CSS principal -->
-    <link rel="stylesheet" href="/reservaweb/assets/css/style.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/estilo.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
 </head>
+
 <body>
 
-<header>
-    <nav>
-        <!-- Enlaces visibles para todos -->
-        <a href="/reservaweb/index.php">Inicio</a>
-        <a href="/reservaweb/pages/mis_reservas.php">Mis Reservas</a> <!-- acceso al historial de las reservas-->
-        <a href="/reservaweb/pages/pedidos.php">Pedidos</a>
-        <a href="/reservaweb/pages/galeria.php">Galería</a>
-        <a href="/reservaweb/pages/contacto.php">Contacto</a>
+<header class="header">
+    <div class="container header-content">
+        <div class="logo">
+            <a href="/index.php">MiNegocio</a>
+        </div>
 
-        <!-- Si hay un usuario logeado -->
-        <?php if (!empty($_SESSION['user'])): ?>
-
-            <!-- Si el usuario es administrador -->
-            <?php if ($_SESSION['user']['rol'] === 'admin'): ?>
-                <a href="/reservaweb/pages/admin/index.php">Panel Admin</a>
-            <?php endif; ?>
-
-            <!-- Mostrar botón de cerrar sesión -->
-            <a href="/reservaweb/logout.php">Salir (<?= htmlspecialchars($_SESSION['user']['nombre']); ?>)</a>
-
-        <?php else: ?>
-            <!-- Si NO está logeado -->
-            <a href="/reservaweb/login.php">Login</a>
-            <a href="/reservaweb/registro.php">Registro</a>
-        <?php endif; ?>
-
-    </nav>
+        <nav class="menu">
+            <a href="/index.php">Inicio</a>
+            <a href="/reservas.php">Reservas</a>
+            <a href="/menu.php">Menú</a>
+            <a href="/galeria.php">Galería</a>
+            <a href="/contacto.php">Contacto</a>
+            <a href="/pago/carrito.php">Carrito</a>
+        </nav>
+    </div>
 </header>
 
-<main>
+<main class="container">
