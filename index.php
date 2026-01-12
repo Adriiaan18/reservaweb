@@ -1,25 +1,23 @@
-<?php
-session_start();
-if (!isset($_SESSION['usuario_id'])) {
-    header("Location: login.php");
-    exit;
-}
-?>
+<?php include 'includes/header.php'; ?>
 
-<h2>Deja tu comentario</h2>
+<section class="hero">
+    <h2>Bienvenido a Mi Kebab</h2>
+    <p>Los mejores kebabs de Sevilla</p>
+    <a href="menu.php" class="btn">Ver Menú</a>
+</section>
 
-<form action="procesar_comentario.php" method="POST">
-    <label>Valoración (1-5):</label>
-    <select name="valoracion" required>
-        <option value="1">⭐</option>
-        <option value="2">⭐⭐</option>
-        <option value="3">⭐⭐⭐</option>
-        <option value="4">⭐⭐⭐⭐</option>
-        <option value="5">⭐⭐⭐⭐⭐</option>
-    </select>
+<section class="destacados">
+    <h3>Productos Destacados</h3>
+    <div class="productos">
+        <div class="producto">
+            <img src="images/kebab1.jpg" alt="Kebab 1">
+            <p>Kebab Especial</p>
+        </div>
+        <div class="producto">
+            <img src="images/kebab2.jpg" alt="Kebab 2">
+            <p>Kebab de Pollo</p>
+        </div>
+    </div>
+</section>
 
-    <label>Comentario:</label>
-    <textarea name="comentario" required></textarea>
-
-    <button type="submit">Enviar comentario</button>
-</form>
+<?php include 'includes/footer.php'; ?>

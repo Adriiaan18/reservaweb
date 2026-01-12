@@ -1,32 +1,14 @@
 <?php
-/*
- |--------------------------------------------------------------------------
- | Archivo de conexión a la base de datos
- |--------------------------------------------------------------------------
- | Este archivo se incluye en TODAS las páginas que necesiten acceder a MySQL.
- | Su función es crear una conexión segura mediante PDO.
- */
-
-$host = '127.0.0.1';     // Servidor local (XAMPP)
-$db   = 'reservaweb';    // Nombre de tu base de datos
-$user = 'root';          // Usuario por defecto de XAMPP
-$pass = '';              // Contraseña vacía por defecto en XAMPP
-$charset = 'utf8mb4';    // Charset recomendado
-
-// Creamos el DSN (información de conexión)
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-
-// Opciones recomendadas para PDO
-$options = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // Muestra errores detallados
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, // Devuelve datos en arrays asociativos
-];
+$host = "localhost";
+$user = "root";         // Usuario por defecto de XAMPP
+$password = "";         // Contraseña por defecto de XAMPP
+$dbname = "mi_kebab";
 
 try {
-    // Intentamos crear la conexión
-    $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (PDOException $e) {
-    // Si falla la conexión, mostramos error y detenemos ejecución
-    exit('Error en la conexión: ' . $e->getMessage());
+    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $password);
+    // Configurar errores
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e) {
+    echo "Error de conexión: " . $e->getMessage();
 }
 ?>
