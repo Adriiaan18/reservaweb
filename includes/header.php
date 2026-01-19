@@ -22,3 +22,15 @@
     </nav>
 </header>
 <main>
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+<nav class="menu">
+    <ul id="nav-ul">
+        <li><a href="index.php">Inicio</a></li>
+        <li><a href="menu.php">Menú</a></li>
+        <li><a href="reservas.php">Reservas</a></li>
+        <li><a href="galeria.php">Galería</a></li>
+        <li><a href="comentarios.php">Reseñas</a></li>
+        <li><a href="pagos.php">Pagos</a></li>
+        <li><a href="contacto.php">Contacto</a></li>
+    </ul>
+</nav>
