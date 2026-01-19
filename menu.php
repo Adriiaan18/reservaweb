@@ -8,15 +8,19 @@ include 'includes/db.php';
 
     <?php
     // Obtener filtros
-    $buscar = isset($_GET['buscar']) ? $_GET['buscar'] : '';
-    $filtro_categoria = isset($_GET['categoria']) ? $_GET['categoria'] : '';
+    $buscar = $_GET['buscar'] ?? '';
+    $filtro_categoria = $_GET['categoria'] ?? '';
 
-    // Obtener todas las categorías para el select con manejo de errores
+    // Obtener todas las categorías con manejo de errores
     try {
-        $categorias_stmt = $conn->query("SELECT * FROM categorias ORDER BY nombre ASC");
-        $categorias = $categorias_stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch(PDOException $e) {
-        echo "<p style='color:red'>Error al cargar las categorías: " . $e->getMessage() . "</p>";
+        if($conn) {
+            $categorias_stmt = $conn->query("SELECT * FROM categorias ORDER BY nombre ASC");
+            $categorias = $categorias_stmt->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            throw new Exception("No hay conexión a la base de datos");
+        }
+    } catch (Exception $e) {
+        echo "<p style='color:red'>Error al cargar categorías: " . $e->getMessage() . "</p>";
         $categorias = [];
     }
     ?>
@@ -40,7 +44,7 @@ include 'includes/db.php';
 
     <div class="menu-items">
         <?php
-        // Construir consulta dinámica para productos
+        // Consultar productos con manejo de errores
         try {
             $query = "SELECT * FROM productos WHERE 1";
             $params = [];
@@ -60,7 +64,6 @@ include 'includes/db.php';
             $stmt = $conn->prepare($query);
             $stmt->execute($params);
 
-            // Mostrar productos
             if ($stmt->rowCount() > 0) {
                 while($producto = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo '<div class="menu-item">';
