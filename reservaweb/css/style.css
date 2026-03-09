@@ -1,0 +1,411 @@
+/* Importar una fuente moderna de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ================= HEADER ================= */
+header {
+    background-color: #212529;
+    color: #fff;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    /* Contenedor para alinear texto y logo */
+    .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    }
+
+    /* AQUÍ ESTÁ EL TRUCO PARA EL TAMAÑO */
+    .logo-img {
+        height: 60px;      /* Si aún la ves grande, baja este número a 50px o 40px */
+        width: auto;       /* Esto evita que se deforme */
+        object-fit: contain;
+        order: 2;          /* Esto coloca la imagen a la derecha del texto */
+    }
+
+    /* Ajuste opcional para el texto del logo si queda muy pegado */
+    .logo-container h2 {
+        margin: 0;
+        font-size: 1.8rem;
+    }
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #ffca28; 
+}
+
+/* ================= HERO (Portada del index.php) ================= */
+.hero {
+    /* Color oscuro por si la imagen tarda en cargar */
+    background-color: #2b2b2b; 
+    /* Imagen sacada de internet oscurecida un poco para que el texto se lea bien */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1561651823-34feb02250e4?q=80&w=1920&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+}
+
+.hero h2 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: #ffca28; /* Amarillo mostaza */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Sombrita para que resalte */
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.btn {
+    background-color: #ffaa00;
+    color: #212529;
+    padding: 10px 25px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background 0.3s transform 0.2s;
+}
+
+.btn:hover {
+    background-color: #e69900;
+    transform: scale(1.05);
+}
+
+/* ================= PRODUCTOS Y MENÚ ================= */
+.destacados, .menu-page {
+    padding: 50px 5%;
+    text-align: center;
+}
+
+.destacados h3, .menu-page h2 {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    color: #212529;
+}
+
+/* --- Estilos Footer --- */
+.site-footer {
+    background-color: #222; 
+    color: #fff;
+    padding: 50px 20px 20px 20px;
+    margin-top: 50px;
+    border-top: 4px solid #ffc107;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section h3 {
+    color: #ffc107; 
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #444;
+    margin-top: 40px;
+    padding-top: 20px;
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+/* --- Estilos Galería (Collage) --- */
+.galeria-collage {
+    padding: 50px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.grid-imagenes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.grid-imagenes img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border: 2px solid #222;
+    border-radius: 20px;
+    transition: transform 0.4s ease;
+}
+
+.grid-imagenes img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* GRID DE PRODUCTOS (Para que parezca tienda) */
+.productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.producto {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.producto:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+}
+
+.producto img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background-color: #eee; /* Fondo gris si falla la imagen */
+}
+
+.producto h4 {
+    margin: 15px 0 5px;
+    font-size: 1.2rem;
+}
+
+.producto p {
+    padding: 0 10px;
+    color: #666;
+}
+
+.producto .precio {
+    color: #e63946;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.producto button {
+    background-color: #e63946;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.producto button:hover {
+    background-color: #d62828;
+}
+
+/* --- Estilos para la sección Reseñas (Hero) --- */
+
+.hero-resenas {
+    background-image: url('../images/Fondo inicio.jpg'); /* Asegúrate de que la ruta sea correcta */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    min-height: 80vh; /* Ocupa el 80% de la altura de la pantalla */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-resenas .overlay {
+    background: rgba(0, 0, 0, 0.6); /* Capa oscura para mejorar legibilidad */
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+/* Contenedor centralizado para el texto y el formulario */
+.container-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.hero-section {
+    /* Si tu carpeta css y images están al mismo nivel, usa ../images/ */
+    background-image: url('../images/Fondo inicio.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+/* Estilo del formulario de reseñas */
+.form-resena-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px); /* Efecto cristalino moderno */
+    padding: 30px;
+    border-radius: 15px;
+    width: 100%;
+    margin-top: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.form-resena-box input, 
+.form-resena-box textarea, 
+.form-resena-box select {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+    box-sizing: border-box; /* Importante para que el padding no desborde */
+}
+
+/* Botón de envío */
+.btn-enviar {
+    background-color: #ffc107; /* Color dorado del proyecto */
+    color: #000;
+    font-weight: bold;
+    border: none;
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.btn-enviar:hover {
+    background-color: #e0a800;
+    transform: scale(1.02);
+}
+
+/* Ajustes para el texto */
+.container-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.container-hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* ================= CARRITO ================= */
+#carrito {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 40px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+#lista-carrito {
+    list-style: none;
+    margin: 15px 0;
+    text-align: left;
+}
+
+#lista-carrito li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+#lista-carrito button {
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 2px 8px;
+    cursor: pointer;
+}
+
+/* ================= FORMULARIOS BÁSICOS ================= */
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, select, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button[type="submit"] {
+    background-color: #212529;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+form button[type="submit"]:hover {
+    background-color: #ffca28;
+    color: #212529;
+}
